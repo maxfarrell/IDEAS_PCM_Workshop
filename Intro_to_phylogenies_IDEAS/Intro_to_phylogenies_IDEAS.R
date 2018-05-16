@@ -18,6 +18,7 @@ plot(ftree)
 ftree3 <- drop.tip(ftree, "A_boreas")
 plot(ftree3)
 
+#drop the outgroup
 plot(ftree)
 ftree3 <- drop.tip(ftree, c(21,22))
 plot(ftree3)
@@ -31,6 +32,18 @@ plot(ftree)
 nodelabels()
 
 #lining up data and a tree
+#four assumtions of many phylo methods:
+
+#data and tree match perfectly (ie., all species in data occur 
+#in tree, and the spelling of species labels in data matches 
+#that of tip labels)
+
+#no missing data (complete case)
+
+#tree is fully dichotomous
+
+#order of species in data matches that of the tip labels in 
+#the tree
 
 #loading sample tree
 ctree <- read.tree("canid_tree.txt")
@@ -62,6 +75,7 @@ cmass <- cmass[cmass > 0]
 hist(cmass)
 hist(log10(cmass))
 cmass <- log10(cmass)
+shapiro.test(cmass)
 
 #using treedata
 library(geiger)
